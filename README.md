@@ -10,6 +10,8 @@ For example, the match between Leicester (home) and Manchester United (away) has
 The fundamental assumption for the simulation is that the number of goals a team scored in a match follows the Poisson distribution. The rationale for this is football is a low-scoring game and the distribution typically skewed towards lower numbers when the mean is small. However, it also assumes that each goal is indepedent, while this is definitely not the case in football.
 This is mitigated by using the xG stats, which is based on various mentioned factors leading to the shots and their quality. It is a fair reflection of the actual performance of each team. A match is simulated by xG of the home and away team separately, and then are joined to get the simulated scoreline.
 ## Monte Carlo simulation
-Subject to the Poisson distribution, Leicester City, with an xG of 0.88, have a 36.5% chance of scoring 1 goal. They could even score *5 goals*, albeit at just 0.2%. To counter the variance, **10000 simulations** are conducted. Probabilities are then calculated by dividing the number of successful events (e.g. Leicester winning the league) by 10000.
+Subject to the Poisson distribution, Leicester City, with an xG of 0.88, have a 36.5% chance of scoring 1 goal. They could even score *5 goals*, albeit at just 0.2% chance. To counter the variance, **10000 simulations** are conducted for each of EPL's 380 matches, and *the nth simulation of a match belongs to the nth season* (i.e. every 39th simulation of 380 matches is of the 39th simulated season).
+
+From this, an average league table of 10000 seasons is aggregated. Probabilities are then calculated by dividing the number of successful events (e.g. Leicester winning the league) by 10000.
 # Data source
-Understat Kaggle
+xG stats are from Understat, a website storing match xG of the top 6 European football leagues, an available on Kaggle.
