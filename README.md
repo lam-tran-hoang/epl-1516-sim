@@ -6,7 +6,10 @@ In football, **expected goal (xG)** is a fairly recent metric to measure over/un
 
 For example, the match between Leicester (home) and Manchester United (away) has the xG scoreline of **0.88-1.06**. The match ended 1-1, which is a fair outcome given their xG stats. Season-wise, Leicester scored 68 goals with the xG of 68.42, however, they conceded just 36 goals with a xGA (expected goal against) of 45.02. In other words, *Leicester conceded 9.02 goals less than expectations*. For context, Leicester was praised for their defensive work and fast counter-attacks throughout that season, but with **league title rival Arsenal proving to be the most wasteful in the league**, *scoring 8.53 goals less than expectations*, the probability of Leicester winning the league that season could be considerably low. By simming the seasons with xG, we could see how (un)likely Leicester win was and which teams should have achieved more (or less) in 2015/16.
 # Methodology
-Monte Carlo and the Poisson distribution
-
+## Poisson distribution
+The fundamental assumption for the simulation is that the number of goals a team scored in a match follows the Poisson distribution. The rationale for this is football is a low-scoring game and the distribution typically skewed towards lower numbers when the mean is small. However, it also assumes that each goal is indepedent, while this is definitely not the case in football.
+This is mitigated by using the xG stats, which is based on various mentioned factors leading to the shots and their quality. It is a fair reflection of the actual performance of each team. A match is simulated by xG of the home and away team separately, and then are joined to get the simulated scoreline.
+## Monte Carlo simulation
+Subject to the Poisson distribution, Leicester City, with an xG of 0.88, have a 36.5% chance of scoring 1 goal. They could even score *5 goals*, albeit at just 0.2%. To counter the variance, **10000 simulations** are conducted. Probabilities are then calculated by dividing the number of successful events (e.g. Leicester winning the league) by 10000.
 # Data source
 Understat Kaggle
